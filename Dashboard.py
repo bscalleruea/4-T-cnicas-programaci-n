@@ -20,11 +20,12 @@ def mostrar_menu():
 
     opciones = {
         '1': 'Semana 02/Semana 2.py',
-        '2': 'Semana 03/Clima Diario S.3 POO.py/Clima Dirario S.3 Tradicional.py/SEMANA 3.P Tradicional.py/SEMANA 3.POO .py',
-        '3': 'Semana 04/EjemplosMundoReal_POO.py/poo.py',
-        '4': 'Semana 05/Tipos de datos_identificadores.py',
-        '5': 'Semana 06/Objetos, clases, Herencia, Encapsulamiento, Polimorfismo.py',
-        '6': 'Semana 07/Constructores y Destructores.py',
+        '2': 'Semana 03/Clima Diario S.3 POO.py',
+        '3': 'Semana 03/Clima diario S.3 TRADICIONAL.py',
+        '4': 'Semana 04/EjemplosMundoReal_POO.py',
+        '5': 'Semana 05/Tipos de datos_Identificadores.py',
+        '6': 'Semana 06/Objetos, clases, Herencia, Encapsulamiento, Polimorfismo.py',
+        '7': 'Semana 07/Constructores y Destructores.py',
         # Agrega aquí el resto de las rutas de los scripts
  }
 
