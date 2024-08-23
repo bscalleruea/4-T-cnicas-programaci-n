@@ -33,6 +33,75 @@ class Producto:
 class Inventario:
     def __init__(self):
         self.productos = []
+        import os
+
+        class Producto:
+            def __init__(self, nombre, cantidad, precio):
+                self.nombre = nombre
+                self.cantidad = cantidad
+                self.precio = precio
+
+            def __str__(self):
+                return f'{self.nombre},{self.cantidad},{self.precio}'
+
+        class Inventario:
+            def __init__(self, archivo='inventario.txt'):
+                self.archivo = archivo
+                self.productos = {}
+                self.cargar_inventario()
+
+            def cargar_inventario(self):
+                if os.path.exists(self.archivo):
+                    try:
+                        with open(self.archivo, 'r') as file:
+                            for linea in file:
+                                nombre, cantidad, precio = linea.strip().split(',')
+                                self.productos[nombre] = Producto(nombre, int(cantidad), float(precio))
+                    except (FileNotFoundError, PermissionError) as e:
+                        print(f'Error al cargar el archivo de inventario: {e}')
+                else:
+                    print('El archivo de inventario no existe. Se creará uno nuevo.')
+
+            def guardar_inventario(self):
+                try:
+                    with open(self.archivo, 'w') as file:
+                        for producto in self.productos.values():
+                            file.write(f'{producto}\n')
+                except (PermissionError, IOError) as e:
+                    print(f'Error al guardar el archivo de inventario: {e}')
+
+            def añadir_producto(self, producto):
+                self.productos[producto.nombre] = producto
+                self.guardar_inventario()
+                print(f'Producto {producto.nombre} añadido exitosamente.')
+
+            def actualizar_producto(self, nombre, cantidad, precio):
+                if nombre in self.productos:
+                    self.productos[nombre].cantidad = cantidad
+                    self.productos[nombre].precio = precio
+                    self.guardar_inventario()
+                    print(f'Producto {nombre} actualizado exitosamente.')
+                else:
+                    print(f'Producto {nombre} no encontrado en el inventario.')
+
+            def eliminar_producto(self, nombre):
+                if nombre in self.productos:
+                    del self.productos[nombre]
+                    self.guardar_inventario()
+                    print(f'Producto {nombre} eliminado exitosamente.')
+                else:
+                    print(f'Producto {nombre} no encontrado en el inventario.')
+
+            def mostrar_inventario(self):
+                for producto in self.productos.values():
+                    print(producto)
+
+        # Ejemplo de uso
+        inventario = Inventario()
+        inventario.añadir_producto(Producto('Manzana', 10, 0.5))
+        inventario.actualizar_producto('Manzana', 20, 0.4)
+        inventario.eliminar_producto('Manzana')
+        inventario.mostrar_inventario()
 
     def añadir_producto(self, producto):
         for p in self.productos:
